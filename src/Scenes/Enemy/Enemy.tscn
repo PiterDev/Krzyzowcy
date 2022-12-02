@@ -1,34 +1,53 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Enemy/enemy.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Enemy.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 18.1108
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 107, 3, 17, 34 )
 
-[node name="Enemy" type="KinematicBody2D"]
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 40, 53 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 9.0
+
+[node name="Enemy" type="KinematicBody2D" groups=["Enemy"]]
 script = ExtResource( 1 )
+default_color = Color( 0.415686, 0.101961, 0.101961, 0.462745 )
+seen_color = Color( 0.341176, 0.133333, 0.133333, 0.835294 )
+
+[node name="Exclamation" type="Sprite" parent="."]
+visible = false
+position = Vector2( -39, -32 )
+texture = SubResource( 4 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 520, 0 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0, 0.788235, 1, 1 )
-polygon = PoolVector2Array( -16, 16, -16, -16, 16, -16, 16, 16 )
+[node name="Sprite" type="Sprite" parent="."]
+rotation = -1.5708
+texture = SubResource( 3 )
+region_rect = Rect2( 0, 0, 40, 53 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+position = Vector2( -14, 0 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( 500, 200, 0, 0, 500, -200 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.7
 
 [node name="SightOverlay" type="Polygon2D" parent="."]
-color = Color( 0.215686, 0.160784, 0.160784, 0.427451 )
+color = Color( 0.415686, 0.101961, 0.101961, 0.462745 )
 polygon = PoolVector2Array( 4, -1, 498, -199, 500, 201 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

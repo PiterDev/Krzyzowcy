@@ -7,15 +7,27 @@ var player_node: KinematicBody2D
 var timer_started := false
 export var on_path := true
 
+export(Color) var default_color 
+export(Color) var seen_color 
+
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 	
 	if body.is_in_group("Player"):
+		$SightOverlay.color = seen_color
 		player_in_view = true
 		player_node = body
 
+		$Exclamation.show()
+		$Exclamation.global_rotation_degrees = 0
+
 func _on_Area2D_body_exited(body:Node) -> void:
 	if body.is_in_group("Player"):
+		$SightOverlay.color = default_color
 		player_in_view = false
+		# $Timer.stop()
+
+		$Exclamation.hide()
+		$Exclamation.global_rotation_degrees = 0
 
 func wall_check(cast_to_global: Vector2) -> bool:
 	if not player_in_view: return false
