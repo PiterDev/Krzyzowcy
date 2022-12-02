@@ -21,21 +21,21 @@ func _process(_delta: float) -> void:
 	
 	#Tomek tu był
 	
-	if Input.is_action_just_pressed("mouse_right") and ammo_in_weapon == 0 and ammo > 0: #sprawdza czy klikasz rpm czy ammo w broni to 0 i czy masz ammo żeby przeładować
+	if Input.is_action_just_pressed("mouse_right") and ammo_in_weapon == 0 and ammo > 0: # checks if you click rpm also checks if you already have ammo in magazine and checks if you have enouhg ammo to reload
 		reload()
 
 	
-	if Input.is_action_just_pressed("mouse_left") and ammo_in_weapon == 1: #sprawdza czy klikasz lpm i czy masz ammo w broni
+	if Input.is_action_just_pressed("mouse_left") and ammo_in_weapon == 1: #checks if you click lpm 
 		shoot()
 	if ammo == 0:
 		print("no ammo")
 		
 		
-func shoot():  #strzela i odejmuje ammo z broni
+func shoot():  #shoot and remove ammo from magazine
 	ammo_in_weapon -= 1
 	print("shoot")
 	
-func reload(): #ustawia ammo w broni  na 1 i odejmuje 1 z ogólnego stocka broni
+func reload(): #sets ammo in magazine to 1 and remove one ammo from your overall ammo stock
 	ammo -= 1
 	ammo_in_weapon = 1
 	print("reload")
