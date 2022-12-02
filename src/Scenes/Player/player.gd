@@ -20,12 +20,7 @@ func _process(_delta: float) -> void:
 	velocity = move_and_slide(velocity)
 	
 	#Tomek tu był
-	
-	if Input.is_action_just_pressed("mouse_right") and ammo_in_weapon == 0 and ammo > 0: # checks if you click rpm also checks if you already have ammo in magazine and checks if you have enouhg ammo to reload
-		reload()
-
-	
-	if Input.is_action_just_pressed("mouse_left") and ammo_in_weapon == 1: #checks if you click lpm 
+	if Input.is_action_just_pressed("mouse_left") and ammo > 0:
 		shoot()
 	if ammo == 0:
 		print("no ammo")
@@ -34,10 +29,3 @@ func _process(_delta: float) -> void:
 func shoot():  #shoot and remove ammo from magazine
 	ammo_in_weapon -= 1
 	print("shoot")
-	
-func reload(): #sets ammo in magazine to 1 and remove one ammo from your overall ammo stock
-	ammo -= 1
-	ammo_in_weapon = 1
-	print("reload")
-	
-	
