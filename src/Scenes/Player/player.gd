@@ -4,6 +4,7 @@ export var walk_speed := 230.0
 var velocity := Vector2.ZERO
 var accel := 0.7
 var ammo := 3
+var ammo_in_weapon := 1
 
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position()) # TODO: Smooth Rotation
@@ -19,14 +20,21 @@ func _process(_delta: float) -> void:
 	velocity = move_and_slide(velocity)
 	
 	#Tomek tu był
-	if Input.is_action_just_pressed("mouse_left") and ammo > 0:
-		
+	
+	if Input.is_action_just_pressed("mouse_right") and ammo_in_weapon == 0 and ammo > 0:
+		reload()
+
+	
+	if Input.is_action_just_pressed("mouse_left") and ammo_in_weapon == 1:
 		shoot()
 		
 func shoot():
 	ammo -= 1
+	ammo_in_weapon -= 1
 	print("shoot")
 	
-	
+func reload():
+	ammo_in_weapon = 1
+	print("reload")
 	
 	
