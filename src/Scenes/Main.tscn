@@ -6,6 +6,7 @@
 [sub_resource type="TileSet" id=1]
 
 [node name="Main" type="Node2D"]
+position = Vector2( 1083, -153 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 91, 375 )
