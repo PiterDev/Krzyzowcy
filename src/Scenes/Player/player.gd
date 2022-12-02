@@ -9,8 +9,8 @@ func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position()) # TODO: Smooth Rotation
 	var direction := Vector2.ZERO
 
-	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 
 	direction = direction.normalized()
 
@@ -20,10 +20,11 @@ func _process(_delta: float) -> void:
 	
 	#Tomek tu był
 	if Input.is_action_just_pressed("mouse_left") and ammo > 0:
-		ammo -= 1
+		
 		shoot()
 		
 func shoot():
+	ammo -= 1
 	print("shoot")
 	
 	
