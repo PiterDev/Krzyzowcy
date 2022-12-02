@@ -30,11 +30,7 @@ func _process(_delta: float) -> void:
 		
 		
 func shoot():  #shoot and remove ammo from magazine
-<<<<<<< HEAD
 	Globals.ammo -= 1
-=======
-	ammo -= 1
->>>>>>> 62e6d93 (Add autotile)
 	print("shoot")
 	
 
