@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Enemy/enemy.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=2]
+
+[node name="EnemyPathFollow" type="PathFollow2D"]
+position = Vector2( 149, 75.9999 )
+rotation = -0.399061
+offset = 0.000579834
+
+[node name="Enemy" type="KinematicBody2D" parent="." instance=ExtResource( 2 )]
+rotation = 0.399059
+scale = Vector2( 1, 1 )
+script = ExtResource( 1 )

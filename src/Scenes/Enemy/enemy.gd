@@ -5,6 +5,7 @@ onready var raycast := $RayCast2D as RayCast2D
 var player_in_view := false
 var player_node: KinematicBody2D
 var timer_started := false
+export var on_path := true
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 	
