@@ -7,13 +7,12 @@ var player_node: KinematicBody2D
 var timer_started := false
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
-	print("entered")
+	
 	if body.is_in_group("Player"):
 		player_in_view = true
 		player_node = body
 
 func _on_Area2D_body_exited(body:Node) -> void:
-	print("exited")
 	if body.is_in_group("Player"):
 		player_in_view = false
 
@@ -33,7 +32,6 @@ func _process(_delta: float) -> void:
 	if wall_check(player_node.global_position) and not timer_started:
 		$Timer.start()
 		timer_started = true
-		print("Starting Timer")
 
 
 func _on_Timer_timeout() -> void:
