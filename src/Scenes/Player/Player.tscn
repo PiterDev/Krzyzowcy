@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Player/HBoxContainer.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 18.1108
@@ -9,6 +10,10 @@ radius = 18.1108
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 4, 5, 40, 57 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 107, 0, 8, 13 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 1 )
@@ -21,3 +26,41 @@ position = Vector2( 0.0325928, -0.313744 )
 rotation = -1.5708
 texture = SubResource( 2 )
 offset = Vector2( -0.273533, 14.0528 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -78.0
+margin_top = 8.0
+margin_right = -38.0
+margin_bottom = 38.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -82.0
+margin_top = 10.0
+margin_right = -50.0
+margin_bottom = 23.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 13.0
+texture = SubResource( 3 )
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 12.0
+margin_right = 20.0
+margin_bottom = 13.0
+texture = SubResource( 3 )
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 24.0
+margin_right = 32.0
+margin_bottom = 13.0
+texture = SubResource( 3 )
