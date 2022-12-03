@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
@@ -22,36 +22,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0.964728, 0.999693, 0.962734, 0.0391061, 1,
 atlas = ExtResource( 2 )
 region = Rect2( 107, 0, 8, 13 )
 
-[sub_resource type="Shader" id=8]
-code = "shader_type canvas_item;
-
-uniform int levels = 3;
-uniform float spread = 0.01;
-
-vec3 chromatic_slice(float t){
-	vec3 res = vec3(1.0-t, 1.0 - abs(t - 1.0), t - 1.0);
-	return max(res, 0.0);
-}
-
-void fragment(){
-	vec3 sum;
-	COLOR.rgb = vec3(0);
-	vec2 offset = (UV - vec2(0.5))*vec2(1,-1);
-	for(int i = 0; i < levels; i++){
-		float t = 2.0*float(i)/float(levels-1); // range 0.0->2.0
-		vec3 slice = vec3(1.0-t, 1.0 - abs(t - 1.0), t - 1.0);
-		slice = max(slice, 0.0);
-		sum += slice;
-		vec2 slice_offset = (t-1.0)*spread*offset;
-		COLOR.rgb += slice * texture(SCREEN_TEXTURE, SCREEN_UV + slice_offset).rgb;
-	}
-	COLOR.rgb /= sum;
-}"
-
 [sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 8 )
-shader_param/levels = 3
-shader_param/spread = 0.006
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -79,7 +50,7 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=7]
 shader = SubResource( 6 )
 shader_param/vignette_intensity = 1.0
-shader_param/vignette_opacity = 0.26
+shader_param/vignette_opacity = 0.124
 shader_param/vignette_rgb = Color( 0.0235294, 0, 0.72549, 1 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]

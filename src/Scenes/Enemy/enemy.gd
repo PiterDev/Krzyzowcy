@@ -17,12 +17,7 @@ var start_pos := Vector2.ZERO
 var walk_speed := 100
 # signal on_patrol_next_point
 
-
-
-	
-
 func _on_Area2D_body_entered(body: Node) -> void:
-	
 	if body.is_in_group("Player"):
 		
 		player_in_view = true
@@ -46,7 +41,7 @@ func _process(_delta: float) -> void:
 	if not player_in_view: 
 		return
 	if wall_check(player_node.global_position) and not timer_started:
-
+		look_at(player_node.global_position) # TODO: Make it smooth
 		$SightOverlay.color = seen_color
 		$Exclamation.show()
 		$Exclamation.global_rotation_degrees = 0
@@ -99,6 +94,7 @@ func _on_RotateTimer_timeout() -> void:
 	var random_rotation: float = randi() % 360
 	rot_tween.tween_property(self, "rotation_degrees", random_rotation, 1)
 	rot_tween.play()
+
 
 func _ready() -> void:
 	# rotation_degrees = randi() % 360
