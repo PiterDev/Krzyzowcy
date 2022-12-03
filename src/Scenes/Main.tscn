@@ -10,6 +10,7 @@ position = Vector2( 91, 375 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 293, 249 )
+collision/safe_margin = 0.001
 
 [node name="Enemy2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 563, 393 )
