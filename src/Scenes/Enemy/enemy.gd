@@ -52,9 +52,9 @@ func _process(_delta: float) -> void:
 		# $Exclamation.global_rotation_degrees = 0
 		detected = true
 		Globals.emit_signal("player_detected")
-
-		$Timer.start()
-		timer_started = true
+		look_at(player_node.global_position)
+		#$Timer.start()
+		#timer_started = true
 
 
 # func walk_to_point(local_pos: Vector2) -> void:

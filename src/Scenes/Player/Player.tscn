@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
@@ -10,45 +10,12 @@
 [ext_resource path="res://Scenes/Player/kursor.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Enemy.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sounds/Spotted.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Sounds/Step.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Sounds/Step2.wav" type="AudioStream" id=12]
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 9 )
 region = Rect2( 106, 4, 18, 32 )
-
-[sub_resource type="Animation" id=17]
-resource_name = "Seen"
-loop = true
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.12, 0.17, 0.44, 0.57, 0.84, 1.01, 1.21, 1.4, 1.51, 1.61, 1.71, 1.8, 1.87, 1.91, 1.94, 1.97, 2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false, true, false, true, false, false, true, false, true, false, true, false, true, false, true, false ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../Spotted2")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 10 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 10 )
-} ],
-"times": PoolRealArray( 0.17, 0.58 )
-}
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -122,11 +89,77 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=7]
 shader = SubResource( 6 )
 shader_param/vignette_intensity = 1.0
-shader_param/vignette_opacity = 0.26
+shader_param/vignette_opacity = 0.292
 shader_param/vignette_rgb = Color( 0.0235294, 0, 0.72549, 1 )
 
 [sub_resource type="CapsuleShape2D" id=13]
 height = 16.0
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Walk"
+length = 0.5
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("Step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0, 0.28221 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 1 )
@@ -135,9 +168,6 @@ bullet = ExtResource( 4 )
 [node name="Spotted" type="Sprite" parent="."]
 position = Vector2( 0, -45 )
 texture = SubResource( 16 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spotted"]
-anims/Seen = SubResource( 17 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.0325928, -0.313744 )
@@ -246,3 +276,11 @@ shape = SubResource( 13 )
 [node name="Spotted2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -18.353
+
+[node name="Step" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 18 )
+anims/Walk = SubResource( 17 )

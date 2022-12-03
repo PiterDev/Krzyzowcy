@@ -43,7 +43,12 @@ func _process(_delta: float) -> void:
 
 	velocity = move_and_slide(velocity)
 	
-
+	if direction != Vector2.ZERO:
+		if not $AnimationPlayer.is_playing():
+			$AnimationPlayer.play("Walk")
+	else:
+		print("Not walking")
+		$AnimationPlayer.stop(false)
 	
 	#Tomek tu był
 	if Input.is_action_just_pressed("mouse_left") and Globals.ammo > 0:

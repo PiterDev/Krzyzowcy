@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Enemy/enemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Enemy.png" type="Texture" id=2]
@@ -12,9 +12,13 @@ region = Rect2( 107, 3, 17, 34 )
 atlas = ExtResource( 2 )
 region = Rect2( 12, 10, 40, 61 )
 
+[sub_resource type="CircleShape2D" id=7]
+radius = 54.0093
+
 [sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0, 0.695906, 1 )
-colors = PoolColorArray( 0.415686, 0.101961, 0.101961, 0.462745, 0.415686, 0.101961, 0.101961, 0.462745, 0.976471, 0.964706, 0.964706, 0 )
+interpolation_mode = 2
+offsets = PoolRealArray( 0.175439, 0.315789, 0.994152 )
+colors = PoolColorArray( 0.415686, 0.101961, 0.101961, 0.462745, 0.976471, 0.964706, 0.964706, 0, 0.662745, 0.482353, 0.482353, 0 )
 
 [sub_resource type="GradientTexture" id=6]
 gradient = SubResource( 5 )
@@ -48,6 +52,10 @@ cast_to = Vector2( 520, 0 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( 500, 200, 0, 0, 500, -200 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -3, 0 )
+shape = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
