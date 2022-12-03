@@ -61,6 +61,7 @@ A / strzałka w lewo - ruch w lewo
 D / strzałka w prawo - ruch w prawo
 lewy przycisk myszy - strzał
 ruch myszy - celowanie"
+align = 1
 
 [node name="Button" type="Button" parent="."]
 anchor_left = 1.0
