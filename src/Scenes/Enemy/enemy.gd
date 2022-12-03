@@ -9,6 +9,7 @@ export var on_path := true
 
 export(Color) var default_color 
 export(Color) var seen_color 
+export(Array, Vector2) var patrol_path := []
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	

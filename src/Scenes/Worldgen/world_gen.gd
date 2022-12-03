@@ -23,8 +23,8 @@ func generate_houses() -> void:
 	for i in house_amount:
 		
 		var obstructed := false
-		var rand_pos_x := randi() % (tilemap_width)
-		var rand_pos_y := randi() % (tilemap_height)
+		var rand_pos_x := randi() % (tilemap_width) + 1
+		var rand_pos_y := randi() % (tilemap_height) +  1
 		var rand_width := randi() % max_house_width + min_house_width
 		var rand_height := randi() % max_house_height + min_house_height
 
