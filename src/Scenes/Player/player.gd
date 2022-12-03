@@ -26,8 +26,7 @@ func _process(_delta: float) -> void:
 	#Tomek tu był
 	if Input.is_action_just_pressed("mouse_left") and Globals.ammo > 0:
 		shoot()
-		# randi() % 1
-		# $"Shoot".play()
+		$"Shoot1".play()
 	if Globals.ammo == 0:
 		# print("no ammo")
 		pass

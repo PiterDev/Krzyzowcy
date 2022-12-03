@@ -19,6 +19,7 @@ var walk_speed := 100
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
+		$"Spotted".play()
 		
 		player_in_view = true
 		player_node = body
