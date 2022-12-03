@@ -74,7 +74,7 @@ func _process(_delta: float) -> void:
 
 func _on_Timer_timeout() -> void:
 	if wall_check(player_node.global_position):
-		print("Player Spotted! Died")
+		get_tree().change_scene("res://Scenes/Menu/Death.tscn")
 	else:
 		$SightOverlay.color = default_color
 		$Exclamation.hide()
@@ -101,6 +101,6 @@ func _on_RotateTimer_timeout() -> void:
 	rot_tween.play()
 
 func _ready() -> void:
-	rotation_degrees = randi() % 360
-	$RotateTimer.wait_time = randi() % 10 + 5
+	# rotation_degrees = randi() % 360
+	$RotateTimer.wait_time = randi() % 10 + 2
 	$RotateTimer.start()
