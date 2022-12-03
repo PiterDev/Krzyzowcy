@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
@@ -8,6 +8,12 @@
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 4, 5, 40, 57 )
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
@@ -27,12 +33,26 @@ texture = SubResource( 2 )
 offset = Vector2( -0.273533, 14.0528 )
 
 [node name="BulletPos1" type="Position2D" parent="Sprite"]
-position = Vector2( 5.68611, 40.9674 )
-rotation = 1.5708
+position = Vector2( 5.76541, 39.8881 )
+rotation = 1.35351
+
+[node name="Line2D" type="Line2D" parent="Sprite/BulletPos1"]
+rotation = 0.00179349
+points = PoolVector2Array( 0, 0, 128, 0 )
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
+gradient = SubResource( 4 )
 
 [node name="BulletPos2" type="Position2D" parent="Sprite"]
-position = Vector2( 0.686104, 41.9674 )
-rotation = 1.5708
+position = Vector2( 0.765406, 40.8881 )
+rotation = 1.52804
+
+[node name="Line2D" type="Line2D" parent="Sprite/BulletPos2"]
+rotation = -0.032235
+points = PoolVector2Array( 0, 0, 128, 0 )
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
+gradient = SubResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
