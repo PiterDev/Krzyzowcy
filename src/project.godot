@@ -22,6 +22,8 @@ Globals="*res://globals.gd"
 
 mouse_cursor/custom_image="res://Assets/kursor.png"
 mouse_cursor/tooltip_position_offset=Vector2( 0, 0 )
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [gui]
 

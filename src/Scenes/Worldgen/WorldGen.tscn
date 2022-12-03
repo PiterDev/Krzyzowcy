@@ -179,6 +179,7 @@ tile_data = PoolIntArray( -1310720, 1073741825, 0, -1310705, 1073741825, 0, -131
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 11, 416 )
+walk_speed = 150.0
 
 [node name="Door" type="Sprite" parent="."]
 position = Vector2( 2363, 381 )
