@@ -96,8 +96,8 @@ func place_road() -> void:
 			$Tilemaps/TilemapGround.set_cell(road_pos_x+x, y, 0)
 			$Tilemaps/TilemapGround.update_bitmask_area(Vector2(road_pos_x+x, y))
 
-# func _ready() -> void:
-# 	generate_houses()
+func _ready() -> void:
+	generate_houses()
 	
 
 func clear_last() -> void:

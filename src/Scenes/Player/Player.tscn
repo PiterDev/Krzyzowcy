@@ -4,6 +4,8 @@
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player/HBoxContainer.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Bullet/Bullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sounds/Shoot2.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sounds/Shoot.wav" type="AudioStream" id=6]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -15,35 +17,6 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.98324, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.964728, 0.999693, 0.962734, 0.0391061, 1, 1, 1, 0 )
-
-[sub_resource type="Shader" id=9]
-code = "shader_type canvas_item;
-
-uniform float vignette_intensity = 0.4;
-uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
-uniform vec4 vignette_rgb : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
-
-float vignette(vec2 uv){
-	uv *= 1.0 - uv.xy;
-	float vignette = uv.x * uv.y * 15.0;
-	return pow(vignette, vignette_intensity * vignette_opacity);
-}
-
-void fragment(){
-	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
-	vec4 text = texture(TEXTURE, UV);
-	
-	text.rgba *= (vignette_rgb.rgba);
-	text.rgba *= (vignette(UV));
-	
-	COLOR = vec4((text.rgb)*color.rgb,text.a);
-}"
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
-shader_param/vignette_intensity = 1.0
-shader_param/vignette_opacity = 1.0
-shader_param/vignette_rgb = Color( 0.0470588, 1, 0.0156863, 1 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
@@ -117,14 +90,6 @@ width = 1.0
 default_color = Color( 1, 1, 1, 1 )
 gradient = SubResource( 5 )
 
-[node name="ColorRect" type="ColorRect" parent="Sprite"]
-material = SubResource( 10 )
-margin_left = -19.43
-margin_top = 0.971333
-margin_right = 6.57003
-margin_bottom = 14.9713
-rect_scale = Vector2( 1.3565, 1.44242 )
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
@@ -169,6 +134,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Control3" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -179,3 +145,9 @@ current = true
 zoom = Vector2( 0.75, 0.75 )
 smoothing_enabled = true
 smoothing_speed = 3.651
+
+[node name="Shoot1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Shoot2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
