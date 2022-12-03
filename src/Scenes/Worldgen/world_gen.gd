@@ -15,6 +15,7 @@ export var rooftop_autotile_id := -1
 
 
 export(PackedScene) var enemy_scene
+export(PackedScene) var bullet
 
 onready var building_tilemap := $Tilemaps/TilemapBuildings as TileMap
 
@@ -88,6 +89,11 @@ func place_prefabs() -> void:
 				if randf() > 0.99:
 					print("Placing prefab")
 					$Tilemaps/TilemapPrefabs.set_cell(x, y, randi()%4)
+					if randf() > 0.7:
+						var new_bullet = bullet.instance()
+						new_bullet.position = building_tilemap.map_to_world(Vector2(x, y))
+						add_child(new_bullet)
+
 
 func place_road() -> void:
 	var road_pos_x := randi()%tilemap_width

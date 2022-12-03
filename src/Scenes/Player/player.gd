@@ -5,7 +5,7 @@ var velocity := Vector2.ZERO
 var accel := 0.7
 
 export(PackedScene) var bullet
-	
+export(PackedScene) var ammo_refill
 
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position()) # TODO: Smooth Rotation

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://GameTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Worldgen/world_gen.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/black.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Extras.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Worldgen/AmmoRefill.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=5]
 0/name = "Extras.png 0"
@@ -149,6 +150,7 @@ max_house_width = 10
 max_house_height = 10
 rooftop_autotile_id = 8
 enemy_scene = ExtResource( 6 )
+bullet = ExtResource( 9 )
 
 [node name="Tilemaps" type="Node2D" parent="."]
 
