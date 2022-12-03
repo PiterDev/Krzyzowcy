@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("TextureRect:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 486, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("TextureRect:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -159, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "TitleDrop"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("TextureRect:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 486, -0.25, 0, 0.25, 0, 486, -0.25, 0, 0.25, 0, 486, -0.25, 0, 0.25, 0, 486, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7, 1.2, 1.6 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("TextureRect:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -159, -0.25, 0, 0.25, 0, 297, -0.25, 0, 0.25, 0, 125, -0.25, 0, 0.25, 0, 207, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7, 1.2, 1.6 )
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -123.0
+margin_top = 34.0
+margin_right = 162.0
+margin_bottom = 88.0
+text = "Play"
+flat = true
+icon_align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/TitleDrop = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 486.0
+margin_top = -159.0
+margin_right = 572.0
+margin_bottom = -73.0
+texture = ExtResource( 1 )
+expand = true
