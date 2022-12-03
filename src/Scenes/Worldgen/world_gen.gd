@@ -19,6 +19,8 @@ export(PackedScene) var bullet
 
 onready var building_tilemap := $Tilemaps/TilemapBuildings as TileMap
 
+var ammo_placed := false
+
 func generate_houses() -> void:
 	place_road()
 	building_tilemap.clear()
@@ -89,10 +91,11 @@ func place_prefabs() -> void:
 				if randf() > 0.99:
 					print("Placing prefab")
 					$Tilemaps/TilemapPrefabs.set_cell(x, y, randi()%4)
-					if randf() > 0.7:
+					if randf() > 0.7 and not ammo_placed:
 						var new_bullet = bullet.instance()
 						new_bullet.position = building_tilemap.map_to_world(Vector2(x, y))
 						add_child(new_bullet)
+						ammo_placed = true
 
 
 func place_road() -> void:
