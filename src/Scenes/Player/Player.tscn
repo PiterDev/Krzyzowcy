@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
@@ -22,7 +22,34 @@ colors = PoolColorArray( 1, 1, 1, 1, 0.964728, 0.999693, 0.962734, 0.0391061, 1,
 atlas = ExtResource( 2 )
 region = Rect2( 107, 0, 8, 13 )
 
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_rgb : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+float vignette(vec2 uv){
+    uv *= 1.0 - uv.xy;
+    float vignette = uv.x * uv.y * 15.0;
+    return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment(){
+    vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+    vec4 text = texture(TEXTURE, UV);
+    
+    text.rgba *= (vignette_rgb.rgba);
+    text.rgba *= (1.0 - vignette(UV));
+    
+    COLOR = vec4((text.rgb)*color.rgb,text.a);
+}"
+
 [sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 10 )
+shader_param/vignette_intensity = 0.4
+shader_param/vignette_opacity = 0.5
+shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
