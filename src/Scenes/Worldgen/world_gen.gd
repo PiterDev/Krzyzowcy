@@ -12,7 +12,7 @@ export var max_house_width: int = 7
 export var max_house_height: int = 7
 
 export var rooftop_autotile_id := -1
-
+export var alt_rooftop_autotile_id := -1
 
 export(PackedScene) var enemy_scene
 export(PackedScene) var bullet
@@ -43,7 +43,7 @@ func generate_houses() -> void:
 					]
 				
 				for tile in tiles_to_check:
-					if tile == rooftop_autotile_id:
+					if tile == rooftop_autotile_id or tile == alt_rooftop_autotile_id:
 						obstructed = true
 						break
 				if obstructed: 
@@ -57,10 +57,10 @@ func generate_houses() -> void:
 		var new_enemy: KinematicBody2D = enemy_scene.instance()
 		new_enemy.position = building_tilemap.map_to_world(Vector2(rand_pos_x-2, rand_pos_y))
 		
-
+		var chosen_autotile := rooftop_autotile_id if randf() > 0.5 else alt_rooftop_autotile_id
 		for x in range(rand_pos_x, rand_pos_x+rand_width):
 			for y in range(rand_pos_y, rand_pos_y+rand_height):
-				building_tilemap.set_cell(x, y, rooftop_autotile_id)
+				building_tilemap.set_cell(x, y, chosen_autotile)
 				building_tilemap.update_bitmask_area(Vector2(x, y))
 
 		var corners := [
@@ -73,7 +73,7 @@ func generate_houses() -> void:
 			patrol_points.append(building_tilemap.map_to_world(corner))
 
 		# new_enemy.patrol_path = patrol_points
-		if randf() > 0.3:
+		if randf() > 0.35:
 			$Enemies.add_child(new_enemy)
 		else:
 			new_enemy.free()
@@ -89,7 +89,7 @@ func place_prefabs() -> void:
 			if building_tilemap.get_cell(x, y) == -1:
 				if randf() > 0.99:
 					$Tilemaps/TilemapPrefabs.set_cell(x, y, randi()%4)
-					if randf() > 0.7 and not ammo_placed:
+					if randf() > 0.4 and not ammo_placed:
 						var new_bullet = bullet.instance()
 						new_bullet.position = building_tilemap.map_to_world(Vector2(x, y))
 						add_child(new_bullet)

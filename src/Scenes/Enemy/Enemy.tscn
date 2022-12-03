@@ -10,7 +10,7 @@ region = Rect2( 107, 3, 17, 34 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 40, 53 )
+region = Rect2( 12, 10, 40, 61 )
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.695906, 1 )
