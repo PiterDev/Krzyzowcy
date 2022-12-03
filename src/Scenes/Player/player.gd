@@ -34,6 +34,7 @@ func shoot():  #shoot and remove ammo from magazine
 	Globals.ammo -= 1
 	# bullet
 	for bullet_pos in $Sprite.get_children():
+		if not bullet_pos is Position2D: continue 
 		var spawn_pos: Vector2 = bullet_pos.global_position
 		var new_bullet: Area2D = bullet.instance()
 		new_bullet.global_transform = bullet_pos.global_transform

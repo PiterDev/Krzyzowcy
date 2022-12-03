@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
@@ -16,9 +16,71 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 offsets = PoolRealArray( 0, 0.98324, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.964728, 0.999693, 0.962734, 0.0391061, 1, 1, 1, 0 )
 
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_rgb : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 text = texture(TEXTURE, UV);
+	
+	text.rgba *= (vignette_rgb.rgba);
+	text.rgba *= (vignette(UV));
+	
+	COLOR = vec4((text.rgb)*color.rgb,text.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/vignette_intensity = 1.0
+shader_param/vignette_opacity = 1.0
+shader_param/vignette_rgb = Color( 0.0470588, 1, 0.0156863, 1 )
+
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 107, 0, 8, 13 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_rgb : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 text = texture(TEXTURE, UV);
+	
+	text.rgba *= (vignette_rgb.rgba);
+	text.rgba *= (1.0 - vignette(UV));
+	
+	COLOR = vec4((text.rgb)*color.rgb,text.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/vignette_intensity = 1.0
+shader_param/vignette_opacity = 0.124
+shader_param/vignette_rgb = Color( 0.0235294, 0, 0.72549, 1 )
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 3
+light_mode = 1
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 1 )
@@ -54,6 +116,14 @@ points = PoolVector2Array( 0, 0, 128, 0 )
 width = 1.0
 default_color = Color( 1, 1, 1, 1 )
 gradient = SubResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="Sprite"]
+material = SubResource( 10 )
+margin_left = -19.43
+margin_top = 0.971333
+margin_right = 6.57003
+margin_bottom = 14.9713
+rect_scale = Vector2( 1.3565, 1.44242 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -92,6 +162,17 @@ margin_left = 24.0
 margin_right = 32.0
 margin_bottom = 13.0
 texture = SubResource( 3 )
+
+[node name="Control2" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Control3" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.862745, 0.803922, 1, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
