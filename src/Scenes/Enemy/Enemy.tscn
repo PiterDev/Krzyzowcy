@@ -19,6 +19,7 @@ colors = PoolColorArray( 0.415686, 0.101961, 0.101961, 0.462745, 0.415686, 0.101
 gradient = SubResource( 5 )
 
 [node name="Enemy" type="KinematicBody2D" groups=["Enemy"]]
+position = Vector2( 1, 0 )
 script = ExtResource( 1 )
 default_color = Color( 0.415686, 0.101961, 0.101961, 0.462745 )
 seen_color = Color( 0.341176, 0.133333, 0.133333, 0.835294 )
