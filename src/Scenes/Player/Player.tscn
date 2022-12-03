@@ -278,7 +278,7 @@ stream = ExtResource( 10 )
 volume_db = -18.353
 
 [node name="Step" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = -20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
