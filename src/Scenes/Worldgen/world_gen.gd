@@ -70,11 +70,10 @@ func generate_houses() -> void:
 		
 		var patrol_points := []
 		for corner in corners:
-			print(building_tilemap.map_to_world(corner))
 			patrol_points.append(building_tilemap.map_to_world(corner))
 
 		# new_enemy.patrol_path = patrol_points
-		if randf() > 0.2:
+		if randf() > 0.3:
 			$Enemies.add_child(new_enemy)
 		else:
 			new_enemy.free()
@@ -89,7 +88,6 @@ func place_prefabs() -> void:
 		for y in tilemap_height:
 			if building_tilemap.get_cell(x, y) == -1:
 				if randf() > 0.99:
-					print("Placing prefab")
 					$Tilemaps/TilemapPrefabs.set_cell(x, y, randi()%4)
 					if randf() > 0.7 and not ammo_placed:
 						var new_bullet = bullet.instance()

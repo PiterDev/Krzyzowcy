@@ -7,6 +7,28 @@ var accel := 0.7
 export(PackedScene) var bullet
 export(PackedScene) var ammo_refill
 
+
+func _ready() -> void:
+	$Spotted.hide()
+	Globals.connect("player_detected", self, "_player_detected")
+	Globals.connect("player_undetected", self, "_player_undetected")
+
+func _player_detected() -> void:
+	print("Entered")
+	$Spotted.global_rotation_degrees = 0
+	# $Spotted/AnimationPlayer.stop()
+	# $Spotted/AnimationPlayer.seek(0.0)
+	$Spotted2.play()
+
+	$Spotted.show()
+
+func _player_undetected() -> void:
+	print("Exited")
+	# $Spotted/AnimationPlayer.stop()
+	# $Spotted/AnimationPlayer.seek(0.0)
+	$Spotted.hide()
+	# $Spotted2.play()
+
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())# TODO: Smooth Rotation
 	global_rotation_degrees += 7

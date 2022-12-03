@@ -7,6 +7,8 @@ var player_node: KinematicBody2D
 var timer_started := false
 export var on_path := true
 
+var detected := false
+
 export(Color) var default_color 
 export(Color) var seen_color 
 # export(Array, Vector2) var patrol_path := []
@@ -19,7 +21,7 @@ var walk_speed := 100
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
-		$"Spotted".play()
+		# $"Spotted".play()
 		
 		player_in_view = true
 		player_node = body
@@ -27,6 +29,8 @@ func _on_Area2D_body_entered(body: Node) -> void:
 func _on_Area2D_body_exited(body:Node) -> void:
 	if body.is_in_group("Player"):
 		player_in_view = false
+		detected = false
+		Globals.emit_signal("player_undetected")
 
 func wall_check(cast_to_global: Vector2) -> bool:
 	if not player_in_view: return false
@@ -44,8 +48,10 @@ func _process(_delta: float) -> void:
 	if wall_check(player_node.global_position) and not timer_started:
 		look_at(player_node.global_position) # TODO: Make it smooth
 		$SightOverlay.color = seen_color
-		$Exclamation.show()
-		$Exclamation.global_rotation_degrees = 0
+		# $Exclamation.show()
+		# $Exclamation.global_rotation_degrees = 0
+		detected = true
+		Globals.emit_signal("player_detected")
 
 		$Timer.start()
 		timer_started = true
@@ -67,31 +73,21 @@ func _process(_delta: float) -> void:
 # 	walk_tween.play()
 # 	walk_tween.connect("finished", self, "_on_Enemy_on_patrol_next_point") 
 
-
 func _on_Timer_timeout() -> void:
 	if wall_check(player_node.global_position):
 		get_tree().change_scene("res://Scenes/Menu/Death.tscn")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
-		$SightOverlay.color = default_color
-		$Exclamation.hide()
-		$Exclamation.global_rotation_degrees = 0
+		# $SightOverlay.color = default_color
+		# $Exclamation.hide()
+		pass
 
 	timer_started = false
 
-
-# func _on_Enemy_on_patrol_next_point() -> void:
-# 	yield(get_tree().create_timer(0.2), "timeout")
-# 	current_patrol_point = (current_patrol_point + 1 ) % patrol_path.size()
-# 	walk_to_point(patrol_path[current_patrol_point])
-
-# func _ready() -> void:
-# 	position = patrol_path[0]
-# 	start_pos = position
-# 	if patrol_path.size() == 0: return
-# 	walk_to_point(patrol_path[0])
-
 func _on_RotateTimer_timeout() -> void:
+	if detected:
+		look_at(player_node.global_position)
+		return
 	var rot_tween := create_tween()
 	var random_rotation: float = randi() % 360
 	rot_tween.tween_property(self, "rotation_degrees", random_rotation, 1)
