@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Enemy/enemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Enemy.png" type="Texture" id=2]
@@ -10,6 +10,13 @@ region = Rect2( 107, 3, 17, 34 )
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 40, 53 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.695906, 1 )
+colors = PoolColorArray( 0.415686, 0.101961, 0.101961, 0.462745, 0.415686, 0.101961, 0.101961, 0.462745, 0.976471, 0.964706, 0.964706, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 
 [node name="Enemy" type="KinematicBody2D" groups=["Enemy"]]
 script = ExtResource( 1 )
@@ -45,6 +52,7 @@ wait_time = 0.7
 
 [node name="SightOverlay" type="Polygon2D" parent="."]
 color = Color( 0.415686, 0.101961, 0.101961, 0.462745 )
+texture = SubResource( 6 )
 polygon = PoolVector2Array( 4, -1, 498, -199, 500, 201 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
