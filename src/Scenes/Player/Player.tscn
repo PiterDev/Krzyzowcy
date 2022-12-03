@@ -84,12 +84,12 @@ shader_param/vignette_intensity = 1.0
 shader_param/vignette_opacity = 0.26
 shader_param/vignette_rgb = Color( 0.0235294, 0, 0.72549, 1 )
 
+[sub_resource type="CapsuleShape2D" id=11]
+height = 16.0
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 1 )
 bullet = ExtResource( 4 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -14, -4, 1, -20, 15, -15, 14, 4, 11, 18, 0, 20, -13, 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.0325928, -0.313744 )
@@ -163,6 +163,16 @@ texture = SubResource( 3 )
 material = SubResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+modulate = Color( 0.32549, 1, 0.34902, 1 )
+material = SubResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -4.0
+margin_right = 1.0
+margin_bottom = -4.0
 
 [node name="Control2" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 7 )

@@ -98,6 +98,6 @@ func _on_RotateTimer_timeout() -> void:
 
 
 func _ready() -> void:
-	# rotation_degrees = randi() % 360
+	rotation_degrees = randi() % 180 + 100
 	$RotateTimer.wait_time = randi() % 10 + 2
 	$RotateTimer.start()

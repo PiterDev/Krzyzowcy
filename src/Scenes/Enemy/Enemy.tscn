@@ -49,7 +49,7 @@ cast_to = Vector2( 520, 0 )
 polygon = PoolVector2Array( 500, 200, 0, 0, 500, -200 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.65
 
 [node name="RotateTimer" type="Timer" parent="."]
 wait_time = 5.0
