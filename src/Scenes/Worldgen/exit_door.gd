@@ -13,4 +13,5 @@ func _ready() -> void:
 
 func _on_Area2D_body_entered(body:Node) -> void:
 	if body.is_in_group("Player"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().change_scene("res://Scenes/Menu/Win.tscn")

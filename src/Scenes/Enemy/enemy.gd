@@ -70,6 +70,7 @@ func _process(_delta: float) -> void:
 func _on_Timer_timeout() -> void:
 	if wall_check(player_node.global_position):
 		get_tree().change_scene("res://Scenes/Menu/Death.tscn")
+		Input.set_mouse_mode(Input.MOUSE_MODE_Visible)
 	else:
 		$SightOverlay.color = default_color
 		$Exclamation.hide()

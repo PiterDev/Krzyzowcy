@@ -8,7 +8,8 @@ export(PackedScene) var bullet
 export(PackedScene) var ammo_refill
 
 func _process(_delta: float) -> void:
-	look_at(get_global_mouse_position()) # TODO: Smooth Rotation
+	look_at(get_global_mouse_position())# TODO: Smooth Rotation
+	global_rotation_degrees += 7
 	var direction := Vector2.ZERO
 
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -41,4 +42,6 @@ func shoot():  #shoot and remove ammo from magazine
 		var new_bullet: Area2D = bullet.instance()
 		new_bullet.global_transform = bullet_pos.global_transform
 		owner.add_child(new_bullet)
+		
+
 
