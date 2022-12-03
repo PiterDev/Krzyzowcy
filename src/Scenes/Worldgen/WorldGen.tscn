@@ -140,9 +140,9 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 189.0 ]
 }
-tilemap_width = 71
-tilemap_height = 23
-house_amount = 50
+tilemap_width = 75
+tilemap_height = 24
+house_amount = 75
 min_house_width = 3
 min_house_height = 3
 max_house_width = 10
@@ -179,7 +179,7 @@ tile_data = PoolIntArray( -1310720, 1073741825, 0, -1310705, 1073741825, 0, -131
 position = Vector2( 26, 473 )
 
 [node name="Door" type="Sprite" parent="."]
-position = Vector2( 2271, 350 )
+position = Vector2( 2363, 381 )
 texture = ExtResource( 4 )
 script = ExtResource( 5 )
 

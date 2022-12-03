@@ -96,13 +96,22 @@ func place_road() -> void:
 			$Tilemaps/TilemapGround.set_cell(road_pos_x+x, y, 0)
 			$Tilemaps/TilemapGround.update_bitmask_area(Vector2(road_pos_x+x, y))
 
-func _ready() -> void:
+func mass_murder() -> void:
+	for enemy in $Enemies.get_children():
+		enemy.queue_free()
+
+func generate() -> void:
+	randomize()
+	mass_murder()
 	generate_houses()
+	
+func _ready() -> void:
+	generate()
 	
 
 func clear_last() -> void:
 	for y in tilemap_height+1:
-		building_tilemap.set_cell(tilemap_width+1, y, -1)
+		building_tilemap.set_cell(tilemap_width, y, -1)
 		building_tilemap.update_bitmask_area(Vector2(tilemap_width, y))
 
 func _process(delta: float) -> void:
