@@ -45,16 +45,16 @@ func wall_check(cast_to_global: Vector2) -> bool:
 func _process(_delta: float) -> void:
 	if not player_in_view: 
 		return
-	if wall_check(player_node.global_position) and not timer_started:
+	if wall_check(player_node.global_position):
 		look_at(player_node.global_position) # TODO: Make it smooth
 		$SightOverlay.color = seen_color
 		# $Exclamation.show()
 		# $Exclamation.global_rotation_degrees = 0
 		detected = true
-		Globals.emit_signal("player_detected")
-		look_at(player_node.global_position)
-		#$Timer.start()
-		#timer_started = true
+		if not timer_started:
+			Globals.emit_signal("player_detected")
+			$Timer.start()
+			timer_started = true
 
 
 # func walk_to_point(local_pos: Vector2) -> void:

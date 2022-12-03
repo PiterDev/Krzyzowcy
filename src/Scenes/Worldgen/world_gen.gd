@@ -108,12 +108,13 @@ func mass_murder() -> void:
 		enemy.queue_free()
 
 func generate() -> void:
-	randomize()
 	mass_murder()
 	generate_houses()
 	
 func _ready() -> void:
+	randomize()
 	generate()
+
 	
 
 func clear_last() -> void:
@@ -124,3 +125,5 @@ func clear_last() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
 		generate_houses()
+
+		
