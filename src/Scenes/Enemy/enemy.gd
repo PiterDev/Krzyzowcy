@@ -10,7 +10,7 @@ export var on_path := true
 export(Color) var default_color 
 export(Color) var seen_color 
 
-func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
+func _on_Area2D_body_entered(body: Node) -> void:
 	
 	if body.is_in_group("Player"):
 		$SightOverlay.color = seen_color
@@ -33,7 +33,7 @@ func wall_check(cast_to_global: Vector2) -> bool:
 	if not player_in_view: return false
 	raycast.cast_to = raycast.to_local(cast_to_global)
 	raycast.force_raycast_update()
-	if not raycast.is_colliding():
+	if not raycast.is_colliding() or not raycast.get_collider():
 		return false
 	if raycast.get_collider().is_in_group("Player"):
 		return true

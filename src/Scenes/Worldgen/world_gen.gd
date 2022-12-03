@@ -13,6 +13,9 @@ export var max_house_height: int = 7
 
 export var rooftop_autotile_id := -1
 
+
+export(PackedScene) var enemy_scene
+
 onready var building_tilemap := $Tilemaps/TilemapBuildings as TileMap
 
 func generate_houses() -> void:
@@ -47,6 +50,9 @@ func generate_houses() -> void:
 		if obstructed:
 			continue
 		
+		var new_enemy: KinematicBody2D = enemy_scene.instance()
+		new_enemy.position = building_tilemap.map_to_world(Vector2(rand_pos_x-2, rand_pos_y))
+		$Enemies.add_child(new_enemy)
 		for x in range(rand_pos_x, rand_pos_x+rand_width):
 			for y in range(rand_pos_y, rand_pos_y+rand_height):
 				building_tilemap.set_cell(x, y, rooftop_autotile_id)
@@ -65,6 +71,3 @@ func clear_last() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
 		generate_houses()
-
-func _on_Area2D_body_entered(body:Node) -> void:
-	pass # Replace with function body.
