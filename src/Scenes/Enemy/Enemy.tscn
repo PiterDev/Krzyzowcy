@@ -51,6 +51,9 @@ polygon = PoolVector2Array( 500, 200, 0, 0, 500, -200 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.7
 
+[node name="RotateTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [node name="SightOverlay" type="Polygon2D" parent="."]
 color = Color( 0.415686, 0.101961, 0.101961, 0.462745 )
 texture = SubResource( 6 )
@@ -59,3 +62,4 @@ polygon = PoolVector2Array( 4, -1, 498, -199, 500, 201 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="RotateTimer" to="." method="_on_RotateTimer_timeout"]

@@ -9,12 +9,13 @@ export var on_path := true
 
 export(Color) var default_color 
 export(Color) var seen_color 
-export(Array, Vector2) var patrol_path := []
-var current_patrol_point: int = 0
+# export(Array, Vector2) var patrol_path := []
+# var current_patrol_point: int = 0
 
+var start_pos := Vector2.ZERO
 
-var walk_speed := 10
-signal on_patrol_next_point
+var walk_speed := 100
+# signal on_patrol_next_point
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
@@ -50,15 +51,22 @@ func _process(_delta: float) -> void:
 		$Timer.start()
 		timer_started = true
 
-func walk_to_point(global_pos: Vector2) -> void:
-	var walk_tween := create_tween().set_parallel(true)
-	var walk_time := global_position.distance_to(global_pos)/walk_speed
-	
-	var angle_to_pos := global_position.angle_to(global_pos)
 
-	walk_tween.interpolate_property(self, "global_position", global_pos, walk_time)
-	walk_tween.interpolate_property(self, "global_rotation", angle_to_pos, walk_time/10)
-	walk_tween.play()
+# func walk_to_point(local_pos: Vector2) -> void:
+# 	var walk_target := start_pos + local_pos
+
+# 	var walk_tween := create_tween()
+# 	var walk_time := position.distance_to(walk_target)/walk_speed
+	
+	
+# 	var random_rotation: float = randi() % 360
+# 	#  TODO: Fix This!!!
+	
+# 	# look_at(walk_target)
+# 	walk_tween.tween_property(self, "rotation_degrees", random_rotation, 1)
+# 	walk_tween.tween_property(self, "position", walk_target, walk_time)
+# 	walk_tween.play()
+# 	walk_tween.connect("finished", self, "_on_Enemy_on_patrol_next_point") 
 
 
 func _on_Timer_timeout() -> void:
@@ -70,3 +78,25 @@ func _on_Timer_timeout() -> void:
 		$Exclamation.global_rotation_degrees = 0
 
 	timer_started = false
+
+
+# func _on_Enemy_on_patrol_next_point() -> void:
+# 	yield(get_tree().create_timer(0.2), "timeout")
+# 	current_patrol_point = (current_patrol_point + 1 ) % patrol_path.size()
+# 	walk_to_point(patrol_path[current_patrol_point])
+
+# func _ready() -> void:
+# 	position = patrol_path[0]
+# 	start_pos = position
+# 	if patrol_path.size() == 0: return
+# 	walk_to_point(patrol_path[0])
+
+func _on_RotateTimer_timeout() -> void:
+	var rot_tween := create_tween()
+	var random_rotation: float = randi() % 360
+	rot_tween.tween_property(self, "rotation_degrees", random_rotation, 1)
+	rot_tween.play()
+
+func _ready() -> void:
+	$RotateTimer.wait_time = randi() % 10 + 5
+	$RotateTimer.start()
