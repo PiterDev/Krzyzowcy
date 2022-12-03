@@ -107,3 +107,4 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button3" to="Button" method="_on_Button3_pressed"]

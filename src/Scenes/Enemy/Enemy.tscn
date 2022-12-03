@@ -10,7 +10,7 @@ region = Rect2( 107, 3, 17, 34 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
-region = Rect2( 12, 10, 40, 61 )
+region = Rect2( 0, 0, 40, 53 )
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 54.0093

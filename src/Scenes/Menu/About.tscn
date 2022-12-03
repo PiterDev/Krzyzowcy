@@ -9,9 +9,54 @@ anchor_bottom = 1.0
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -57.0
-margin_top = 23.0
-margin_right = 69.0
-margin_bottom = 53.0
+margin_left = -81.0
+margin_right = 81.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 1 )
 text = "O grze"
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -514.0
+margin_top = -250.0
+margin_right = 853.0
+margin_bottom = 48.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = ExtResource( 1 )
+text = "W tej grze wcielamy się w rolę szpiega, który musi
+uciec z miasta pełnego wojsk. Gracz nie może zostać
+zauważony, a w jego magazynku znajdują się tylko 3
+pociski. Jego zadaniem jest przedostanie się do
+dogodnie umieszczonego wyjścia ewakuacyjnego."
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Label3" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -133.5
+margin_top = -20.0
+margin_right = 133.5
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 1 )
+text = "Sterowanie"
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 128.0
+margin_top = 351.0
+margin_right = 1070.0
+margin_bottom = 606.0
+rect_scale = Vector2( 0.8, 0.8 )
+custom_fonts/font = ExtResource( 1 )
+text = "W / strzałka w górę - ruch w górę
+S / strzałka w dół - ruch w dół
+A / strzałka w lewo - ruch w lewo
+D / strzałka w prawo - ruch w prawo
+lewy przycisk myszy - strzał
+ruch myszy - celowanie"
