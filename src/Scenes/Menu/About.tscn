@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Fonts/new_dynamicfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/Menu/powrót.gd" type="Script" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -60,3 +61,17 @@ A / strzałka w lewo - ruch w lewo
 D / strzałka w prawo - ruch w prawo
 lewy przycisk myszy - strzał
 ruch myszy - celowanie"
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -174.0
+margin_top = -46.0
+custom_fonts/font = ExtResource( 1 )
+text = "POWRÓT"
+flat = true
+script = ExtResource( 2 )
+
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
