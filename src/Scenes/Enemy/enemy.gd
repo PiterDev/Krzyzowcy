@@ -13,21 +13,19 @@ export(Color) var seen_color
 func _on_Area2D_body_entered(body: Node) -> void:
 	
 	if body.is_in_group("Player"):
-		$SightOverlay.color = seen_color
+		
 		player_in_view = true
 		player_node = body
 
-		$Exclamation.show()
-		$Exclamation.global_rotation_degrees = 0
+		
 
 func _on_Area2D_body_exited(body:Node) -> void:
 	if body.is_in_group("Player"):
-		$SightOverlay.color = default_color
 		player_in_view = false
 		# $Timer.stop()
 
-		$Exclamation.hide()
-		$Exclamation.global_rotation_degrees = 0
+
+		
 
 func wall_check(cast_to_global: Vector2) -> bool:
 	if not player_in_view: return false
@@ -43,11 +41,20 @@ func _process(_delta: float) -> void:
 	if not player_in_view: 
 		return
 	if wall_check(player_node.global_position) and not timer_started:
+
+		$SightOverlay.color = seen_color
+		$Exclamation.show()
+		$Exclamation.global_rotation_degrees = 0
+
 		$Timer.start()
 		timer_started = true
-
 
 func _on_Timer_timeout() -> void:
 	if wall_check(player_node.global_position):
 		print("Player Spotted! Died")
+	else:
+		$SightOverlay.color = default_color
+		$Exclamation.hide()
+		$Exclamation.global_rotation_degrees = 0
+
 	timer_started = false

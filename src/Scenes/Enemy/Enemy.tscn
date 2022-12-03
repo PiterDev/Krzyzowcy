@@ -28,10 +28,6 @@ visible = false
 position = Vector2( -39, -32 )
 texture = SubResource( 4 )
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 520, 0 )
-
 [node name="Sprite" type="Sprite" parent="."]
 rotation = -1.5708
 texture = SubResource( 3 )
@@ -41,8 +37,12 @@ region_rect = Rect2( 0, 0, 40, 53 )
 position = Vector2( -16, -10 )
 polygon = PoolVector2Array( -2, -9, 6, -9, 37, -1, 42, 6, 11, 0, 13, 15, 26, 16, 26, 20, 5, 30, -3, 29, -11, 12 )
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 43, 0 )
+enabled = true
+cast_to = Vector2( 520, 0 )
+
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( 500, 200, 0, 0, 500, -200 )
