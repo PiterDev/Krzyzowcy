@@ -74,6 +74,6 @@ anims/TitleDrop = SubResource( 2 )
 margin_left = 486.0
 margin_top = -159.0
 margin_right = 572.0
-margin_bottom = -73.0
+margin_bottom = -73.0001
 texture = ExtResource( 1 )
 expand = true
