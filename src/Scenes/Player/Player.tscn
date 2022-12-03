@@ -32,7 +32,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0.964728, 0.999693, 0.962734, 0.0391061, 1,
 atlas = ExtResource( 2 )
 region = Rect2( 107, 0, 8, 13 )
 
-[sub_resource type="Shader" id=14]
+[sub_resource type="Shader" id=19]
 code = "shader_type canvas_item;
 
 uniform int levels = 3;
@@ -59,11 +59,11 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=15]
-shader = SubResource( 14 )
+shader = SubResource( 19 )
 shader_param/levels = 3
 shader_param/spread = 0.005
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=20]
 code = "shader_type canvas_item;
 
 uniform float vignette_intensity = 0.4;
@@ -87,7 +87,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
+shader = SubResource( 20 )
 shader_param/vignette_intensity = 1.0
 shader_param/vignette_opacity = 0.292
 shader_param/vignette_rgb = Color( 0.0235294, 0, 0.72549, 1 )
