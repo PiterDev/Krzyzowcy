@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://GameTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Worldgen/world_gen.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/black.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Extras.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Worldgen/AmmoRefill.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Sounds/Death.wav" type="AudioStream" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 1.00431, 11.519, 1.6875, 11.375, 5.36596, 11.2074, 9.96126, 6.61214, 13.9335, 4.89864, 19.3076, 5.21018, 23.9808, 8.87085, 25.6165, 11.9863, 29.8223, 12.3757, 30.2896, 18.1393, 28.7319, 19.5413, 24.7597, 19.5413, 20.4759, 23.4356, 13.3883, 25.0712, 9.1824, 22.9683, 6.22271, 18.1393, 0.848537, 17.9057 )
@@ -226,5 +227,9 @@ script = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
 position = Vector2( 26, 1 )
 shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
 
 [connection signal="body_entered" from="Door/Area2D" to="Door" method="_on_Area2D_body_entered"]
