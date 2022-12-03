@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Menu/to_menu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/new_dynamicfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Fonts/joystix monospace.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 3 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -11,10 +17,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -48.5
-margin_top = -107.0
-margin_right = 48.5
-margin_bottom = -93.0
+margin_left = -131.0
+margin_top = -108.0
+margin_right = 134.0
+margin_bottom = -68.0
+custom_fonts/font = SubResource( 1 )
 text = "Nie żyjesz"
 align = 1
 valign = 1
@@ -29,7 +36,9 @@ margin_top = -30.0
 margin_right = 60.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 120, 60 )
+custom_fonts/font = ExtResource( 2 )
 text = "Menu"
+flat = true
 script = ExtResource( 1 )
 
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
