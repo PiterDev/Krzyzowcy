@@ -64,7 +64,7 @@ margin_left = -142.0
 margin_top = 37.0
 margin_right = 143.0
 margin_bottom = 91.0
-text = "Play"
+text = "Graj"
 flat = true
 icon_align = 1
 script = ExtResource( 2 )
@@ -81,5 +81,20 @@ margin_right = 788.0
 margin_bottom = 143.0
 texture = ExtResource( 1 )
 expand = true
+
+[node name="Button3" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -142.5
+margin_top = -54.0
+margin_right = 142.5
+text = "O grze"
+flat = true
+icon_align = 1
+__meta__ = {
+"_editor_description_": ""
+}
 
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]

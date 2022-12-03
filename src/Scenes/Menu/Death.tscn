@@ -15,7 +15,9 @@ margin_left = -48.5
 margin_top = -107.0
 margin_right = 48.5
 margin_bottom = -93.0
-text = "Oops, you died"
+text = "Nie żyjesz"
+align = 1
+valign = 1
 
 [node name="Button" type="Button" parent="."]
 anchor_left = 0.5
