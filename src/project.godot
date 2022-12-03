@@ -18,6 +18,11 @@ config/icon="res://icon.png"
 
 Globals="*res://globals.gd"
 
+[display]
+
+mouse_cursor/custom_image="res://Assets/kursor.png"
+mouse_cursor/tooltip_position_offset=Vector2( 0, 0 )
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
