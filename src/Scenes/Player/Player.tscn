@@ -13,7 +13,8 @@ region = Rect2( 4, 5, 40, 57 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="Gradient" id=5]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.98324, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.964728, 0.999693, 0.962734, 0.0391061, 1, 1, 1, 0 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
@@ -38,7 +39,7 @@ rotation = 1.35351
 
 [node name="Line2D" type="Line2D" parent="Sprite/BulletPos1"]
 rotation = 0.00179349
-points = PoolVector2Array( 0, 0, 128, 0 )
+points = PoolVector2Array( 0, 0, 119.33, 0, 128, 0 )
 width = 1.0
 default_color = Color( 1, 1, 1, 1 )
 gradient = SubResource( 4 )

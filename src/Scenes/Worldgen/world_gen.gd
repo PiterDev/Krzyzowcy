@@ -55,7 +55,16 @@ func generate_houses() -> void:
 
 func _ready() -> void:
 	generate_houses()
+	clear_last()
+
+func clear_last() -> void:
+	for y in tilemap_height+1:
+		building_tilemap.set_cell(tilemap_width+1, y, -1)
+		building_tilemap.update_bitmask_area(Vector2(tilemap_width, y))
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
 		generate_houses()
+
+func _on_Area2D_body_entered(body:Node) -> void:
+	pass # Replace with function body.
