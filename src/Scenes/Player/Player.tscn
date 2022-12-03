@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
@@ -79,10 +79,10 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=7]
 shader = SubResource( 6 )
 shader_param/vignette_intensity = 1.0
-shader_param/vignette_opacity = 0.26
+shader_param/vignette_opacity = 0.124
 shader_param/vignette_rgb = Color( 0.0235294, 0, 0.72549, 1 )
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="CapsuleShape2D" id=13]
 height = 16.0
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
@@ -186,3 +186,7 @@ stream = ExtResource( 5 )
 [node name="kursor" type="Sprite" parent="."]
 texture = ExtResource( 7 )
 script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2, 1 )
+shape = SubResource( 13 )
