@@ -73,7 +73,7 @@ func generate_houses() -> void:
 			patrol_points.append(building_tilemap.map_to_world(corner))
 
 		# new_enemy.patrol_path = patrol_points
-		if randf() > 0.35:
+		if randf() > 0.25:
 			$Enemies.add_child(new_enemy)
 		else:
 			new_enemy.free()
@@ -121,9 +121,5 @@ func clear_last() -> void:
 	for y in tilemap_height+1:
 		building_tilemap.set_cell(tilemap_width, y, -1)
 		building_tilemap.update_bitmask_area(Vector2(tilemap_width, y))
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_select"):
-		generate_houses()
 
 		

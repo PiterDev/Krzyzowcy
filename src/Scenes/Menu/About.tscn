@@ -22,16 +22,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -514.0
-margin_top = -250.0
+margin_top = -258.0
 margin_right = 853.0
-margin_bottom = 48.0
+margin_bottom = 51.0
 rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = ExtResource( 1 )
 text = "W tej grze wcielamy się w rolę szpiega, który musi
 uciec z miasta pełnego wojsk. Gracz nie może zostać
 zauważony, a w jego magazynku znajdują się tylko 3
 pociski. Jego zadaniem jest przedostanie się do
-dogodnie umieszczonego wyjścia ewakuacyjnego."
+dogodnie umieszczonego wyjścia ewakuacyjnego.
+TIP: Na mapie losowo pojawiają się skrzynki z 
+amunicją."
 align = 1
 valign = 1
 clip_text = true
