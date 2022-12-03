@@ -18,6 +18,9 @@ var walk_speed := 100
 # signal on_patrol_next_point
 
 
+
+	
+
 func _on_Area2D_body_entered(body: Node) -> void:
 	
 	if body.is_in_group("Player"):
@@ -98,5 +101,6 @@ func _on_RotateTimer_timeout() -> void:
 	rot_tween.play()
 
 func _ready() -> void:
+	rotation_degrees = randi() % 360
 	$RotateTimer.wait_time = randi() % 10 + 5
 	$RotateTimer.start()
